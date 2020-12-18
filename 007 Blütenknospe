@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+<!--
+
+Blütenknospe (Page #7)
+A simple FAQ page by @silbrigthemes.
+
+Rules:
+
+    1) Do not claim as your own.
+    2) Do not steal (parts of) the code.
+    3) Do not alter beyond recognition.
+    4) Do not delete the credit.
+    5) Please like / reblog if you are using this.
+    
+Credits:
+
+    1) Icon font by @saturnthms.
+    2) Pure CSS Accordion by Rau on codepen.io
+    3) Font "Playfair Display" by Claus Eggers Sørensen.
+    4) Font "Lato" by Łukasz Dziedzic.
+    
+Have fun with this page!
+Feel free to send me a message if you need help.
+
+-->
+    <head>
+    
+    <!-- Necessary for the layout to be responsive. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Title font, "Playfair Display". -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&amp;subset=cyrillic,latin-ext,vietnamese" rel="stylesheet">
+    
+    <!-- Global font, "Lato". -->
+    <link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin-ext" rel="stylesheet">
+    
+    <!-- Icon font by @saturnthms -->
+    <link href="//solrainha.github.io/saturnicons/saturnicons.css" rel="stylesheet">
+    
+        <style>
+        
+        body{
+            margin:0;
+            background-color:#f8f9fa;
+            font-family:"Lato";
+            color:#2a333c;
+        }
+        
+        /* Custom text selection. */
+        ::selection{
+            background-color:#e397ac;
+            color:#f8f9fa;
+        }
+        
+        ::-moz-selection{
+            background-color:#e397ac;
+            color:#f8f9fa;
+        }
+        
+        ::-o-selection{
+            background-color:#e397ac;
+            color:#f8f9fa;
+        }
+        
+        ::-webkit-selection{
+            background-color:#e397ac;
+            color:#f8f9fa;
+        }
+        
+        ul {
+           list-style-type:none; 
+        }
+        
+        li:before{
+            content:"\e103";
+            font-family:"saturnicons";
+            color:#e397ac;
+            padding-right:0.25em;
+        }
+        
+        b, strong{
+            font-weight:bold;
+            color:#3f4d5a;
+        }
+        
+        i, em{
+            font-style:italic;
+            color:#151a1e;
+        }
+        
+        mark{
+            background-color:#e397ac;
+            color:#f8f9fa;
+            padding:1px 4px 1px 4px;
+        }
+        
+        hr{
+            width:80%;
+            height:4px;
+            border:none;
+            background-color:#e397ac;
+        }
+        
+        a{
+            text-decoration:none;
+            border-bottom:4px solid #e397ac;
+            color:#2a333c;
+            transition:0.5s;
+                -moz-transition:0.5s;
+                -o-transition:0.5s;
+                -webkit-transition:0.5s;
+        }
+        
+        a:hover{
+            border-bottom:4px solid #8b3a42;
+            transition:0.5s;
+                -moz-transition:0.5s;
+                -o-transition:0.5s;
+                -webkit-transition:0.5s;
+        }
+        
+        #i-contain{
+            width:40vw;
+            margin-left:30vw;
+            margin-top:15vh;
+        }
+        
+        #icon{
+            text-align:center;
+        }
+        
+        #icon img{
+            width:96px;
+            height:96px;
+            border-radius:50%;
+        }
+        
+        #title{
+            font-size:2em;
+            text-align:center;
+            padding-top:0.5em;
+            color:#e397ac;
+            font-family:"Playfair Display";
+            font-style:italic;
+        }
+        
+        #desc{
+            text-align:justify;
+            font-size:1em;
+            padding:0 0.5em 0 0.5em;
+        }
+        
+        #nav{
+            width:100%;
+            padding-bottom:1em;
+            height:auto;
+            display:flex;
+            align-items:space-between;
+            justify-content:space-between;
+            flex-direction:row;
+            flex-wrap:wrap;
+        }
+        
+        #nav a{
+            border:none;
+            line-height:2em;
+        }
+        
+        #nav mark{
+            padding:0.25em;
+            padding-left:0.5em;
+            padding-right:0.5em;
+            transition:0.5s;
+                -moz-transition:0.5s;
+                -o-transition:0.5s;
+                -webkit-transition:0.5s;
+        }
+        
+        #nav mark:hover{
+            background-color:#f0f2f4;
+            color:#e397ac;
+            transition:0.5s;
+                -moz-transition:0.5s;
+                -o-transition:0.5s;
+                -webkit-transition:0.5s;
+        }
+        
+        #contain{
+            width:40vw;
+            margin-left:30vw;
+            max-height:40vh;
+            overflow-y:scroll;
+        }
+        
+        .faq{
+            position: relative;
+            margin-bottom: 1px;
+            width: 100%;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        input {
+            position: absolute;
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        label {
+            position: relative;
+            display: block;
+            padding: 0 0 0 1em;
+            background: #e397ac;
+            font-weight: bold;
+            line-height: 3;
+            cursor: pointer;
+            font-family:"Playfair Display";
+        }
+        
+        .answer{
+            max-height:0;
+            overflow:scroll;
+            height:auto;
+            background: #f0f2f4;
+            color:#2a333c;
+            -webkit-transition: max-height .35s;
+            -o-transition: max-height .35s;
+            transition: max-height .35s;
+            text-align:justify;
+        }
+        
+        .answer p {
+            margin: 1em;
+        }
+        
+        .subtitle{
+            padding-left:1em;
+            font-family:"Playfair Display";
+            font-size:1.125em;
+            font-weight:bold;
+            color:#2a333c;
+        }
+
+        /* :checked */
+            input:checked ~ .answer {
+            height: auto;
+            max-height:15em;
+        }
+
+        /* Icon */
+        label::after {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: block;
+            width: 3em;
+            height: 3em;
+            line-height: 3;
+            text-align: center;
+            -webkit-transition: all .35s;
+            -o-transition: all .35s;
+            transition: all .35s;
+        }
+
+        input[type=checkbox] + label::after {
+            content: "+";
+        }
+
+        input[type=checkbox]:checked + label::after {
+            transform: rotate(315deg);
+        }
+        
+        
+        @media only screen and (max-width: 1000px){
+            #i-contain{
+                width:60vw;
+                margin-left:20vw;
+            }
+            
+            #contain{
+                width:60vw;
+                margin-left:20vw;
+            }
+        }
+        
+        @media only screen and (max-width: 450px){
+            #i-contain{
+                width:100vw;
+                margin-left:0;
+            }
+            
+            #contain{
+                width:100vw;
+                margin-left:0;
+                max-height:auto;
+                height:auto;
+            }
+        }
+        
+        @media only screen and (max-width: 350px){
+            #i-contain{
+                width:100vw;
+                margin-left:0;
+            }
+            
+            #contain{
+                width:100vw;
+                margin-left:0;
+                max-height:auto;
+                height:auto;
+            }
+        }
+            
+        </style>
+    </head>
+    
+    <body>
+    
+        <div id="i-contain">
+            <div id="icon">
+                <img src="https://78.media.tumblr.com/0b242c119df8238cacc9f0157769812d/tumblr_p3smscNMS61wsskx3o5_r1_1280.jpg" alt="icon">
+            </div>
+            <div id="title">Fragestunde</div>
+            <div id="desc">
+                <p>
+                If you have any question, please check this FAQ first.
+                <br>
+                If you cannot find your question answered here, please send me a message.
+                </p>    
+            </div>
+            <div id="nav">
+                <a href="/"><mark class="sf sf-home">  Index</mark></a>
+                <a href="/archive"><mark class="sf sf-apps"> Archive</mark></a>
+                <a href="/"><mark class="sf sf-flower-1"> Custom 1</mark></a>
+                <a href="/"><mark class="sf sf-flower-1"> Custom 2</mark></a>
+                <a href="https://silbrigthemes.tumblr.com/"><mark class="sf sf-code"> Credit</mark></a>
+            </div>
+        </div>
+        
+        
+        <!--
+        
+        If you want more sections, just add:
+        
+        <div class="faq">
+              <input id="question-[number]" type="checkbox" name="tabs">
+              <label for="question-[number]">[Question]</label>
+              <div class="answer">
+                <p>[Answer]</p>
+              </div>
+        </div>
+        
+        -->
+        
+        
+        <div id="contain">
+            <div class="faq">
+              <input id="question-one" type="checkbox" name="tabs">
+              <label for="question-one">What is this page?</label>
+              <div class="answer">
+                <p>This page is a simple FAQ page, so you can link people to this if there are questions you receive frequently.</p>
+              </div>
+            </div>
+            
+            <div class="faq">
+              <input id="question-two" type="checkbox" name="tabs">
+              <label for="question-two">What about features & styling?</label>
+              <div class="answer">
+                <p>
+                    <div class="subtitle">Features:</div>
+                    <ul>
+                        <li>Icon, title and description.</li>
+                        <li>Navigation links.</li>
+                        <li>Pure CSS accordion for the FAQ.</li>
+                        <li>Custom text selection.</li>
+                        <li>Integrated askbox.</li>
+                    </ul>    
+         
+                    <hr>
+                   
+                    <div class="subtitle">Styling:</div>
+                    <p>
+                    <b>Lorem</b> ipsum <i>dolor sit amet</i>, consetetur sadipscing elitr, sed diam <mark>nonumy</mark> eirmod tempor invidunt ut labore et dolore magna aliquyam erat, <a href="/">sed diam</a> voluptua.  
+                    </p>
+                </p>
+              </div>
+            </div>
+            
+            <div class="faq">
+              <input id="question-three" type="checkbox" name="tabs">
+              <label for="question-three">I have a different question …</label>
+              <div class="answer">
+                <p>
+                <iframe frameborder="0" height="90" id="ask_form" 
+                scrolling="no" src="http://www.tumblr.com/ask_form/{Name}.tumblr.com" 
+                width="100%"></iframe>
+                <!--[if IE]><script type="text/javascript">document.getElementById('ask_form').
+                allowTransparency=true;</script>
+                <![endif]-->
+                </p>
+              </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
